@@ -1,7 +1,7 @@
 
+function header(cards){
 
-
-`<!doctype html>
+return `<!doctype html>
 <html lang="en">
   <head>
     <title>Team Summary</title>
@@ -24,7 +24,49 @@
     </br>
       <div class="container">
           <div class="row" id="teamSummaries">
+            ${cards}
           </div>
       </div>
   </body>
-</html>`
+</html>` ;
+
+}
+
+function employeeCard(person) {
+    
+    let roleInfo;
+
+    if(person.getRole() === "Intern") {
+        roleInfo = `School: ${getSchool()}`
+    } 
+    else if (person.getRole() === "Engineer") {
+        roleInfo = `School: ${getGithub()}`
+    } 
+    else if (person.getRole() === "Manager") {
+        roleInfo = `School: ${getOfficeNumber()}`
+    }
+    else {
+        console.log("Sorry, but you must choose an existing role");
+    }
+    return `<div class="col-sm-4">
+    <div class="card">
+        <div class="bg-dark text-light card-header">
+            <h3>${person.getName()}</h3>
+            <h5>${person.getRole()} </h5>
+        </div>
+        <div class="card-body">
+            <ul class="list-group">
+                <li class="list-group-item">ID: ${person.getId()}</li>
+                <li class="list-group-item">EMAIL: ${person.getEmail()}</li>
+                <li class="list-group-item">${roleInfo}</li>
+            </ul>
+        </div>
+    </div>
+</div>`;
+
+}
+
+module.exports = {
+    header: header,
+    employeeCard: employeeCard
+};
