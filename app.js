@@ -24,46 +24,46 @@ async function init() {
         try {
             
             let { name } = await promptName();
-            console.log("Returning: " + name);
+            // console.log("Returning: " + name);
 
             let { id } = await promptId();
-            console.log("Returning: " + id);
+            // console.log("Returning: " + id);
 
             let { email } = await promptEmail();
-            console.log("Returning: " + email);
+            // console.log("Returning: " + email);
 
             let { role } = await promptRole();
-            console.log("Returning: " + role);
+            // console.log("Returning: " + role);
 
             let employeeInfo;
 
             if (role === 'Intern'){
                 employeeInfo = await promptSchool();
-                console.log("Returning: " + employeeInfo.school);
+                // console.log("Returning: " + employeeInfo.school);
                 let intern = new Intern(name, id, email, employeeInfo.school);
                 teamArr.push(intern);
             }
             else if (role === 'Engineer'){
                 employeeInfo = await promptGithub();
-                console.log("Returning: " + employeeInfo.githubUsername);
+                // console.log("Returning: " + employeeInfo.githubUsername);
                 let engineer = new Engineer(name, id, email, employeeInfo.githubUsername);
                 teamArr.push(engineer);
             }
             else if (role === 'Manager'){
                 employeeInfo = await promptOffice();
-                console.log("Returning: " + employeeInfo.officeNumber);
+                // console.log("Returning: " + employeeInfo.officeNumber);
                 let manager = new Manager(name, id, email, employeeInfo.officeNumber);
                 teamArr.push(manager);
             }
             newPerson = await promptAddEmployee();
-            console.log("-- This is the response from promptAddEmployee: " + newPerson.runAgain)
+            // console.log("-- This is the response from promptAddEmployee: " + newPerson.runAgain)
         } catch (err){
-            console.log(" ... The catch threw an error ...");
+            // console.log(" ... The catch threw an error ...");
             console.log(err);
         }
-        console.log("-- At end of do while loop: " + newPerson.runAgain);
+        // console.log("-- At end of do while loop: " + newPerson.runAgain);
     } while(newPerson.runAgain === 'Yes');
-    showTeam(teamArr);
+    // showTeam(teamArr);
     createEachCard(teamArr);
     createHtmlFile(stringHTML);
 }
@@ -147,6 +147,7 @@ function promptAddEmployee(){
     return runAgain
 }
 
+// function for Showing what employees are in the array. Injected for testing purposes. 
 function showTeam(arr){
     console.log("... Heres your current team ...")
     arr.forEach(function(teammate){
@@ -162,6 +163,7 @@ function showTeam(arr){
     })
 }
 
+// Loops through the array of employees adding a card for each. 
 function createEachCard(arr){
     arr.forEach(function(teammate){
         let personCard = genHTML.employeeCard(teammate);
@@ -172,6 +174,7 @@ function createEachCard(arr){
 
 }
 
+// Generates the beginning of the html file, then adds the cards. 
 function createHtmlFile(m){
     let createHTML = genHTML.header(m);
     writeFileAsync('./Output/generatedTeam.html', createHTML);
