@@ -37,13 +37,13 @@ function employeeCard(person) {
     let roleInfo;
 
     if(person.getRole() === "Intern") {
-        roleInfo = `School: ${getSchool()}`
+        roleInfo = `School: ${person.getSchool()}`
     } 
     else if (person.getRole() === "Engineer") {
-        roleInfo = `School: ${getGithub()}`
+        roleInfo = `Github: ${person.getGithub()}`
     } 
     else if (person.getRole() === "Manager") {
-        roleInfo = `School: ${getOfficeNumber()}`
+        roleInfo = `Office: ${person.getOfficeNumber()}`
     }
     else {
         console.log("Sorry, but you must choose an existing role");

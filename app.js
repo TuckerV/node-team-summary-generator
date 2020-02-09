@@ -56,10 +56,14 @@ async function init() {
                 teamArr.push(manager);
             }
             newPerson = await promptAddEmployee();
+            console.log("-- This is the response from promptAddEmployee: " + newPerson.runAgain)
         } catch (err){
+            console.log(" ... The catch threw an error ...");
             console.log(err);
         }
+        console.log("-- At end of do while loop: " + newPerson.runAgain);
     } while(newPerson.runAgain === 'Yes');
+    showTeam(teamArr);
     createEachCard(teamArr);
     createHtmlFile(stringHTML);
 }
@@ -135,12 +139,27 @@ function promptOffice(){
 // Prompt for another employee added
 function promptAddEmployee(){
     const runAgain = inquirer.prompt({
-        name: 'name',
-        type: 'list',
-        message: 'Would you like to add another employee?',
-        choices: ['Yes', 'No']
+        name: "runAgain",
+        type: "list",
+        message: "Would you like to add another employee?",
+        choices: ["Yes", "No"]
     });
-    return runAgain;
+    return runAgain
+}
+
+function showTeam(arr){
+    console.log("... Heres your current team ...")
+    arr.forEach(function(teammate){
+        console.log(teammate.name);
+        console.log(teammate.role);
+        if(teammate.role === 'Manager'){
+            console.log(teammate.officeNumber);
+        } else if(teammate.role === 'Intern'){
+            console.log(teammate.school);
+        } else if(teammate.role === 'Engineer'){
+            console.log(teammate.githubUsername);
+        }
+    })
 }
 
 function createEachCard(arr){
@@ -149,6 +168,7 @@ function createEachCard(arr){
         stringHTML += personCard;
         // console.log(stringHTML);
     });
+    // stringHTML = genHTML.employeeCard(arr[0]);
 
 }
 
