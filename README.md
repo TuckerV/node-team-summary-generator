@@ -2,7 +2,7 @@
 Homework 10 for UU Full-flex bootcamp
 
 Tucker Vassau
-![Gif](https://raw.githubusercontent.com/TuckerV/node-github-profile-generator/master/application-demonstration.gif)
+![Gif](https://raw.githubusercontent.com/TuckerV/node-team-summary-generator/master/team-summary-demo.gif)
 
 ## description
 
